@@ -212,10 +212,10 @@ public class WeeklySchedule extends AppCompatActivity{//implements OnClickListen
         // Defined Array values to show in ListView
         String[] values = new String[] { //"10:10-11:00 Operating Systems",
                 //"11:15-12:05 HCI",
-                //"01:25-02:15 Computer Security",
-                //"02:30-04:30 Computer Security Lab 6",
-                "10:00-11:15 Gym",
-                "05:00-10:00 Work @ Flying Monkey"
+                //"01:25-02:15 HCI Lab",
+                //"02:30-04:30 Computer Security Lab 3",
+                //"10:00-11:15 Gym",
+               // "03:00-7:00 Working at Loon"
                 //"SP - Work On Senior Project",
                 //"HCI - Design",
                 //"Computer Security - Quiz"
