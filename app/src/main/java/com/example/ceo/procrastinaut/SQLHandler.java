@@ -97,49 +97,4 @@ public class SQLHandler {
         db.close();
     }
 
-    /*
-    // Inserting Data into table
-    public int insertData(String date, String time, String event_name) {
-        open();
-        ContentValues values = new ContentValues();
-        values.put(DBHandler.KEY_DATE, date);
-        values.put(DBHandler.KEY_EST_TIME, time);
-        values.put(DBHandler.KEY_ASSIGN, event_name);
-        long rowID=database.insert(DBHandler.TABLE_NAME, null, values);
-        close();
-        return (int) rowID;
-    }
-
-    // Getting Cursor to read data from table
-    public Cursor readData(String event_date) {
-        open();
-        String[] allColumns = new String[] { DBHandler.KEY_ID, DBHandler.KEY_DATE,
-                DBHandler.KEY_EST_TIME, DBHandler.KEY_ASSIGN };
-
-        Cursor c = database.query(DBHandler.TABLE_NAME, allColumns,
-                DBHandler.KEY_DATE + " like '" + event_date + "'", null,
-                null, null, null);
-        int count=c.getCount();
-        if (c != null) {
-            c.moveToFirst();
-        }
-        close();
-        return c;
-    }
-
-    // Getting Cursor to read data from table
-    public Cursor readAllEvents() {
-        open();
-        String[] allColumns = new String[] { DBHandler.KEY_ID, DBHandler.KEY_DATE,
-                DBHandler.KEY_EST_TIME, DBHandler.KEY_ASSIGN };
-
-        Cursor c = database.query(DBHandler.TABLE_NAME, allColumns, null, null,
-                null, null, null);
-        if (c != null) {
-            c.moveToFirst();
-        }
-        close();
-        return c;
-    }*/
-
 }
