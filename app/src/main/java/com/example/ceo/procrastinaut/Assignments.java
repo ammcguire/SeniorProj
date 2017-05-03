@@ -95,9 +95,13 @@ public class Assignments extends AppCompatActivity {
         }
     };
 
+    //TEXT FIELD VARIABLES
     private String a_Text = "";
     private String et_Text = "";
     private String r_Text = "";
+    private String d_Text = "";
+    private String t_Text = "";
+    private String at_Text = "";
 
 
     @Override
@@ -110,7 +114,7 @@ public class Assignments extends AppCompatActivity {
         mControlsView = findViewById(R.id.fullscreen_content_controls);
         mContentView = findViewById(R.id.fullscreen_content);
 
-
+        //ADD ASSIGNMENT BUTTON TAKES IN THE VARIOUS INPUTS
         Button assignButton = (Button)findViewById(R.id.addAssignment);
         assignButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,14 +122,17 @@ public class Assignments extends AppCompatActivity {
                 AlertDialog.Builder builder = new AlertDialog.Builder(Assignments.this);
                 builder.setTitle("Add New Assignment");
 
+                //USE CONTEXT TO ADD MULTIPLE TEXT FIELDS TO LAYOUT
                 Context context = (Assignments.this);
                 LinearLayout layout = new LinearLayout(context);
                 layout.setOrientation(LinearLayout.VERTICAL);
 
+                //INPUT FOR ASSIGNMENT NAME
                 final EditText assignInput = new EditText(context);
                 assignInput.setHint("Enter Assignment Name");
                 layout.addView(assignInput);
 
+                //INPUT FOR ESTIMATED ASSIGNMENT TIME
                 final EditText estTime = new EditText(context);
                 estTime.setHint("Estimated Time *In Minutes* ex: 120=2hrs");
                 layout.addView(estTime);
@@ -137,7 +144,7 @@ public class Assignments extends AppCompatActivity {
                 input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_POSTAL_ADDRESS | InputType.TYPE_TEXT_FLAG_IME_MULTI_LINE);
                 builder.setView(input);*/
 
-                // Set up the buttons
+                // Set up the buttons with dialog
                 builder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -157,6 +164,7 @@ public class Assignments extends AppCompatActivity {
             }
         });
 
+        //REMOVE BUTTON, NAME OF ASSIGNMENT MUST MATCH
         Button removeButton = (Button)findViewById(R.id.removeAssignment);
         removeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -164,7 +172,7 @@ public class Assignments extends AppCompatActivity {
                 AlertDialog.Builder builder = new AlertDialog.Builder(Assignments.this);
                 builder.setTitle("Remove Assignment");
 
-                // Set up the input
+                // Set up the input, input must match a current assignment name
                 final EditText input = new EditText(Assignments.this);
                 // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
                 input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_POSTAL_ADDRESS | InputType.TYPE_TEXT_FLAG_IME_MULTI_LINE);
@@ -189,13 +197,55 @@ public class Assignments extends AppCompatActivity {
             }
         });
 
+        //ADDING BUTTON FOR WEEKLY SCHEDULE EDITING
         Button editScheduleButton = (Button)findViewById(R.id.editWS);
-        /*editScheduleButton.setOnClickListener(new View.OnClickListener(){
+        editScheduleButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                AlertDialog.Builder builder = new AlertDialog.Builder(Assignments.this);
+                builder.setTitle("Edit Weekly Schedule");
+
+                //USE CONTEXT TO ADD MULTIPLE TEXT FIELDS TO LAYOUT
+                Context context = (Assignments.this);
+                LinearLayout layout = new LinearLayout(context);
+                layout.setOrientation(LinearLayout.VERTICAL);
+
+                //TEXT FOR DAY INPUT, ONLY VALID DAYS WILL BE ACCEPTABLE
+                final EditText dayInput = new EditText(context);
+                dayInput.setHint("Enter Day Of Reoccuring Task");
+                layout.addView(dayInput);
+
+                //INPUT THE TITLE OF TASK
+                final EditText taskInput = new EditText(context);
+                taskInput.setHint("Title Of Task");
+                layout.addView(taskInput);
+
+                //INPUT TIME YOU WILL ALLOT FOR THIS SPECIFIC TASK
+                final EditText timeAlloted = new EditText(context);
+                timeAlloted.setHint("Time Of Task ex: 03:00 = 3 hours");
+                layout.addView(timeAlloted);
+
+                builder.setView(layout);
+
+                builder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        d_Text = dayInput.getText().toString();
+                        t_Text = taskInput.getText().toString();
+                        at_Text = timeAlloted.getText().toString();
+                    }
+                });
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                builder.show();
 
             }
-        });*/
+        });
 
         // Set up the user interaction to manually show or hide the system UI.
         mContentView.setOnClickListener(new View.OnClickListener() {

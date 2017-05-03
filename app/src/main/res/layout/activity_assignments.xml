@@ -105,7 +105,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:scaleY="1"
-                                app:srcCompat="@mipmap/notepadd" />
+                                app:srcCompat="@mipmap/notepad" />
                         </LinearLayout>
 
                     </LinearLayout>
@@ -126,7 +126,8 @@
                                 android:id="@+id/imageView"
                                 android:layout_width="wrap_content"
                                 android:layout_height="118dp"
-                                app:srcCompat="@mipmap/cross" />
+                                android:layout_weight="1"
+                                app:srcCompat="@mipmap/remove" />
                         </LinearLayout>
 
                         <Button
@@ -171,7 +172,8 @@
                                 android:id="@+id/imageView4"
                                 android:layout_width="wrap_content"
                                 android:layout_height="116dp"
-                                app:srcCompat="@mipmap/calendar" />
+                                android:layout_weight="1"
+                                app:srcCompat="@mipmap/calendarpic" />
                         </LinearLayout>
 
                     </LinearLayout>

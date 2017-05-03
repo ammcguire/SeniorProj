@@ -93,10 +93,16 @@ public class ProgressReports extends AppCompatActivity {
     };
 
 
+    //VARIABLES
+
     TextView counter;
     TextView thisWeek;
     TextView lastWeek;
-
+    TextView thisWeekNum;
+    TextView lastWeekNum;
+    TextView reset;
+    //CounterClass timer = new CounterClass(604800000, 1000);
+    CounterClass timer = new CounterClass(332640000, 1000);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,12 +114,17 @@ public class ProgressReports extends AppCompatActivity {
         mControlsView = findViewById(R.id.fullscreen_content_controls);
         mContentView = findViewById(R.id.fullscreen_content);
 
+        //VARIABLES, INIT TEXT
+
         counter = (TextView) findViewById(R.id.counter);
         //thisWeek = (TextView) findViewById(R.id.thisWeek);
         lastWeek = (TextView) findViewById(R.id.lastWeek);
-        counter.setText("07:00:00:00");
+        //INIT TEXT FOR COUNTER, 7 DAY COUNTDOWN
+        //counter.setText("07:00:00:00");
+        counter.setText("03:21:38:00");
 
-        final CounterClass timer = new CounterClass(604800000, 1000);
+        //COUNTDOWN FROM 7 DAYS
+        //final CounterClass timer = new CounterClass(604800000, 1000);
         timer.start();
 
 
@@ -126,9 +137,11 @@ public class ProgressReports extends AppCompatActivity {
         });
     }
 
+    //SET UP COUNTER CLASS IN ORDER TO COUNT DOWN
     //@TargetApi()
     public class CounterClass extends CountDownTimer{
 
+        //CONSTRUCTOR
         public CounterClass(long millisInFuture, long countDownInterval){
             super(millisInFuture, countDownInterval);
         }
@@ -136,6 +149,7 @@ public class ProgressReports extends AppCompatActivity {
         @Override
         public void onTick(long millisUntilFinished) {
 
+            //DISPLAY AND COUNTDOWN TIME PROPERLY
             long millis = millisUntilFinished;
             @SuppressLint("DefaultLocale") String cdStr = String.format("%02d:%02d:%02d:%02d", TimeUnit.MILLISECONDS.toDays(millis), TimeUnit.MILLISECONDS.toHours(millis) - TimeUnit.DAYS.toHours(TimeUnit.MILLISECONDS.toDays(millis)),
                     TimeUnit.MILLISECONDS.toMinutes(millis) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millis)),
@@ -147,6 +161,13 @@ public class ProgressReports extends AppCompatActivity {
         @Override
         public void onFinish() {
             counter.setText("NEW WEEK");
+            //RESET COUNTER EVERY WEEK
+            timer =  new CounterClass(604800000, 1000);
+            timer.start();
+            //SET NUMBERS CORRECTLY
+            thisWeekNum = lastWeekNum;
+            thisWeekNum = reset;
+
             //recursively call countdown
         }
     }

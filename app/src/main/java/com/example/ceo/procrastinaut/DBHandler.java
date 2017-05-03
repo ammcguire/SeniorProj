@@ -26,11 +26,23 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DBHandler extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "assignmentInfo";
-    private static final String TABLE_ASSIGN = "assignments";
-    private static final String KEY_ID = "id";
-    private static final String KEY_ASSIGN = "assignment";
-    private static final String KEY_EST_TIME = "est_time";
+    private static final String DATABASE_NAME = "SCHEDULE.DB";
+    public static final String TABLE_NAME = "ASSIGNMENTS_TASKS";
+
+    public static final String KEY_ID = "id";
+    public static final String KEY_ASSIGN = "assignment";
+    public static final String KEY_EST_TIME = "est_time";
+    public static final String KEY_DATE = "date";
+
+
+    // Creating table query
+    private static final String CREATE_TABLE = "create table " + TABLE_NAME + "(" + KEY_ID
+           + " INTEGER PRIMARY KEY AUTOINCREMENT, " + KEY_DATE + " TEXT NOT NULL, "+KEY_EST_TIME + " TEXT NOT NULL, " + KEY_ASSIGN + " TEXT);";
+
+
+
+
+
 
     public DBHandler(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -48,15 +60,17 @@ public class DBHandler extends SQLiteOpenHelper {
                 KEY_ASSIGN + " TEXT, " +
                 KEY_EST_TIME + " TEXT " +
                 ")";*/
-        db.execSQL(SQL);
+        //db.execSQL(SQL);
+        db.execSQL(CREATE_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
-        db.execSQL("DROP TABLE IF EXISTS " +  TABLE_ASSIGN);
+        db.execSQL("DROP TABLE IF EXISTS " +  TABLE_NAME);
         onCreate(db);
     }
 
+    /*//ADDING AN ASSIGNMENT TO THE DATABASE, GOING TO BE HANDLED BY SQLHandler
     public void addAssignment(Assignment assignment){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -67,9 +81,10 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
+    //GET NAME OF AN ASSIGNMENT, GOING TO BE HANDLED BY SQLHandler
     public Assignment getAssignment(int id){
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.query(TABLE_ASSIGN, new String[]{KEY_ID, KEY_ASSIGN, KEY_EST_TIME}, KEY_ID + "=?", new String[]{String.valueOf(id)}, null, null, null, null);
+        Cursor cursor = db.query(TABLE_NAME, new String[]{KEY_ID, KEY_ASSIGN, KEY_EST_TIME}, KEY_ID + "=?", new String[]{String.valueOf(id)}, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
         assert cursor != null;
@@ -78,9 +93,10 @@ public class DBHandler extends SQLiteOpenHelper {
         return  newAssign;
     }
 
+    //GET A LIST OF ALL THE ASSIGNMENTS, GOING TO BE HANDLED BY SQLHandler
     public List<Assignment> getAllAssignments() {
         List<Assignment> assignmentList = new ArrayList<Assignment>();
-        String selectQuery = "SELECT *  FROM " + TABLE_ASSIGN;
+        String selectQuery = "SELECT *  FROM " + TABLE_NAME;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
         if (cursor.moveToFirst()){
@@ -96,25 +112,29 @@ public class DBHandler extends SQLiteOpenHelper {
         return assignmentList;
     }
 
+    //GETTING NUMBER OF ASSIGNMENTS IN THE DATABASE, GOING TO BE HANDLED BY SQLHandler
     public int getAssignmentCount() {
-        String countQuery = "SELECT * FROM " + TABLE_ASSIGN;
+        String countQuery = "SELECT * FROM " + TABLE_NAME;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(countQuery, null);
         cursor.close();
         return cursor.getCount();
     }
 
+    //UPDATING AN ASSIGNMENT IN THE DATABASE, GOING TO BE HANDLED BY SQLHandler
     public int updateAssignment(Assignment assignment){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(KEY_ASSIGN, assignment.getAssignment());
         values.put(KEY_EST_TIME, assignment.getEstTime());
-        return db.update(TABLE_ASSIGN, values, KEY_ID + " =? ", new String[]{String.valueOf(assignment.getId())});
+        return db.update(TABLE_NAME, values, KEY_ID + " =? ", new String[]{String.valueOf(assignment.getId())});
     }
 
+    //DELETING AN ASSIGNMENT IN THE DATABASE, GOING TO BE HANDLED B SQLHandler
     public void deleteAssignment(Assignment assignment){
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_ASSIGN, KEY_ID + " =? ", new String[]{String.valueOf(assignment.getId())});
+        db.delete(TABLE_NAME, KEY_ID + " =? ", new String[]{String.valueOf(assignment.getId())});
         db.close();
-    }
+    }*/
 }
+

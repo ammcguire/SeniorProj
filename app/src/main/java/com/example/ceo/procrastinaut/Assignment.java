@@ -17,22 +17,30 @@ import java.util.ArrayList;
 
 public class Assignment {//extends SugarRecord{
 
-    int id;
-    String assignment;
-    int estTime;
+    //VARIABLES
 
+    public int id;
+
+    //public String date;
+
+    public String assignment;
+
+    public int estTime;
+
+    //GENERAL CONSTRUCTOR, EMPTY
     public Assignment(){
     }
 
+    //ASSIGNMENT CONSTRUCTOR
     public Assignment(int id, String assignment, int estTime){
         this.id = id;
         this.assignment = assignment;
         this.estTime = estTime;
     }
 
-    public void setId(int id){
-        this.id = id;
-    }
+    //SETTERS
+    public void setId(int id){ this.id = id; }
+
     public void setAssignment(String assignment){
         this.assignment = assignment;
     }
@@ -41,16 +49,16 @@ public class Assignment {//extends SugarRecord{
         this.estTime = estTime;
     }
 
+    //GETTERS
     public int getId(){
         return id;
     }
+
     public String getAssignment(){
         return assignment;
     }
 
-    public int getEstTime(){
-        return estTime;
-    }
+    public int getEstTime(){ return estTime; }
 
 
     /*public static void addAssignment(String assignment, int estTime){

@@ -20,6 +20,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import java.util.ArrayList;
+import android.graphics.Color;
+import android.widget.TextView;
+import android.view.ViewGroup;
 import com.example.ceo.procrastinaut.Assignment;
 import android.util.Log;
 import java.util.List;
@@ -113,6 +116,7 @@ public class WeeklySchedule extends AppCompatActivity{//implements OnClickListen
      */
     private GoogleApiClient client;
 
+    //VARIABLES
     CalendarView calendar;
     ListView listView;
     Button assignButton;
@@ -140,11 +144,13 @@ public class WeeklySchedule extends AppCompatActivity{//implements OnClickListen
         t.replace(R.id.calendar1, caldroidFragment);
         t.commit();*/
 
+        //TESTING DATABASE
         DBHandler db = new DBHandler(this);
+        SQLHandler sqlh = new SQLHandler(this);
         //Log.d("Insert: ", "Inserting..." );
-        db.addAssignment(new Assignment(1, "Computer Security Lab 4", 120));
-        db.addAssignment(new Assignment(2, "Operating System Project 1", 150));
-        db.addAssignment(new Assignment(3, "HCI Paper Prototype", 50));
+        //sqlh.addAssignment(new Assignment(1, "Computer Security Lab 4", 120));
+        //sqlh.addAssignment(new Assignment(2, "Operating System Project 1", 150));
+        //sqlh.addAssignment(new Assignment(3, "HCI Paper Prototype", 50));
 
         /*Log.d("Reading: ", "Reading all assignments...");
         List<Assignment> assignments = db.getAllAssignments();
@@ -154,6 +160,7 @@ public class WeeklySchedule extends AppCompatActivity{//implements OnClickListen
             Log.d("Shop: :", log);
         }*/
 
+        //CREATING THE CALENDAR VIEW
         calendar = (CalendarView) findViewById(R.id.calendar);
         calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
@@ -194,24 +201,43 @@ public class WeeklySchedule extends AppCompatActivity{//implements OnClickListen
         //button = (Button)findViewById(R.id.addAssignment);
         //button.setOnClickListener(this);
         //text = (EditText)findViewById(R.id.addAssignmentT);
+        //ADAPTER TO DISPLAY THE ARRAY
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, dailyView);
 
         // set the lv variable to your list in the xml
         calList=(ListView)findViewById(dailyView);
         calList.setAdapter(adapter);
 
+        //FAKE TEST
         // Defined Array values to show in ListView
-        String[] values = new String[] { "Computer Security - Lab 3",
-                "Operating Systems - Project 1",
-                "SP - Work On Senior Project",
-                "HCI - Design",
-                "Computer Security - Quiz",
-                "Programming Team Practice",
-                "Work",
-                "Clean"
+        String[] values = new String[] { //"10:10-11:00 Operating Systems",
+                //"11:15-12:05 HCI",
+                //"01:25-02:15 Computer Security",
+                //"02:30-04:30 Computer Security Lab 6",
+                "10:00-11:15 Gym",
+                "05:00-10:00 Work @ Flying Monkey"
+                //"SP - Work On Senior Project",
+                //"HCI - Design",
+                //"Computer Security - Quiz"
                 };
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, values);
+        //ADAPTER, OVERRIDE GET VIEW IN ORDER TO CHANGE TEXT COLOR
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, values){
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent){
+                // Get the Item from ListView
+                View view = super.getView(position, convertView, parent);
+
+                // Initialize a TextView for ListView each Item
+                TextView tv = (TextView) view.findViewById(android.R.id.text1);
+
+                // Set the text color of TextView (ListView Item)
+                tv.setTextColor(Color.WHITE);
+
+                // Generate ListView Item using TextView
+                return view;
+            }
+        };
 
         // Assign adapter to ListView
         listView.setAdapter(adapter);

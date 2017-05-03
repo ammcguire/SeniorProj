@@ -86,4 +86,12 @@
     <string name="progress_reports">Progress Reports</string>
     <string name="settings">Settings</string>
     <string name="weekly_schedule">Weekly Schedule</string>
+
+    <string name="title_activity_calendar_sample">CalendarSampleActivity</string>
+
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+
+    <string name="title_activity_caldroid_sample">CaldroidSampleActivity</string>
+
+    <string name="title_activity_main">MainActivity</string>
 </resources>

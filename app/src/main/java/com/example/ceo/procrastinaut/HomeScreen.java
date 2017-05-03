@@ -105,6 +105,7 @@ public class HomeScreen extends AppCompatActivity {
             }
         });
 
+        //IMAGE BUTTON TO LINK TO WEEKLY SCHEDULE PAGE
         ImageButton wsButton = (ImageButton)findViewById(R.id.weeklySchedule);
         wsButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,6 +113,7 @@ public class HomeScreen extends AppCompatActivity {
                 startActivity(new Intent(HomeScreen.this, WeeklySchedule.class));
             }
         });
+        //IMAGE BUTTON TO LINK TO ASSIGNMENT PAGE
         ImageButton aeButton = (ImageButton)findViewById(R.id.assignmentEvent);
         aeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,6 +121,7 @@ public class HomeScreen extends AppCompatActivity {
                 startActivity(new Intent(HomeScreen.this, Assignments.class));
             }
         });
+        //IMAGE BUTTON TO LINK TO PROGRESS REPORT PAGE
         ImageButton prButton = (ImageButton)findViewById(R.id.progressReports);
         prButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -126,6 +129,7 @@ public class HomeScreen extends AppCompatActivity {
                 startActivity(new Intent(HomeScreen.this, ProgressReports.class));
             }
         });
+        //IMAGE BUTTON TO LINK TO SETTINGS PAGE
         ImageButton settButton = (ImageButton)findViewById(R.id.settings);
         settButton.setOnClickListener(new View.OnClickListener() {
             @Override
